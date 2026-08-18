@@ -70,49 +70,62 @@ container.insertAdjacentHTML("beforeend", createMarkup(images));
 container.addEventListener("click", handleClick);
 
 function createMarkup(arr) {
-  return arr.map(
-    (item) =>
-      `<li class="gallery-item">
-        <a class="gallery-link" href="${item.original}">
-            <img
-      class="gallery-image"
-      src="${item.preview}"
-      data-source="${item.original}"
-      alt="${item.description}"
-      width="360"
-      height="200"
-    />
-  </a>
-</li>`,
-  );
+  return arr
+    .map(
+      (item) =>
+        `<li class="gallery-item">
+           <a class="gallery-link" href="${item.original}">
+             <img
+               class="gallery-image"
+               src="${item.preview}"
+               data-source="${item.original}"
+               alt="${item.description}"
+               width="360"
+               height="200"
+             />
+           </a>
+         </li>`,
+    )
+    .join("");
 }
 
 function handleClick(event) {
-  if (event.target === event.currentTarget) {
+  if (!event.target.classList.contains("gallery-image")) {
     return;
   }
 
-  const parentEl = event.target.closest(".gallery-item");
-  //   console.log(parentEl);
+  event.preventDefault();
 
-  //   const originalId = parentEl.dataset.href;
-  //   console.log(originalId);
+  const originalImage = event.target.dataset.source;
+
+  const imageDescription = event.target.alt;
+
+  console.log(originalImage);
+  console.log(imageDescription);
+
   const instance = basicLightbox.create(`
-	<h1>Dynamic Content</h1>
-	<p>You can set the content of the lightbox with JS.</p>
-`);
+  	<img class="modal-image" src="${originalImage}" alt="${imageDescription}">
+    <p class="modal-description">${imageDescription}</p>
+  `);
 
-  const instance = basicLightbox.create(
-    `
-	<h1>Not closable</h1>
-	<p>It's not possible to close this lightbox with a click.</p>
-`,
-    {
-      closable: false,
-    },
-  );
-
-  const instance = basicLightbox.create(document.querySelector("#template"));
+  instance.show();
 }
 
 // console.log(window);
+//   const parentEl = event.target.closest(".gallery-item");
+//   console.log(parentEl);
+
+//   const originalId = parentEl.dataset.href;
+//   console.log(originalId);
+
+//   const instance = basicLightbox.create(
+//     `
+// 	<h1>Not closable</h1>
+// 	<p>It's not possible to close this lightbox with a click.</p>
+// `,
+//     {
+//       closable: false,
+//     },
+//   );
+
+//   const instance = basicLightbox.create(document.querySelector("#template"));

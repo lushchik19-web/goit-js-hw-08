@@ -50,3 +50,11 @@ ol {
   row-gap: 24px;
   column-gap: 24px;
 }
+
+.modal-image {
+  max-height: 80vh;
+}
+
+.modal-description {
+  color: white;
+}
