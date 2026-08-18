@@ -110,22 +110,3 @@ function handleClick(event) {
 
   instance.show();
 }
-
-// console.log(window);
-//   const parentEl = event.target.closest(".gallery-item");
-//   console.log(parentEl);
-
-//   const originalId = parentEl.dataset.href;
-//   console.log(originalId);
-
-//   const instance = basicLightbox.create(
-//     `
-// 	<h1>Not closable</h1>
-// 	<p>It's not possible to close this lightbox with a click.</p>
-// `,
-//     {
-//       closable: false,
-//     },
-//   );
-
-//   const instance = basicLightbox.create(document.querySelector("#template"));
